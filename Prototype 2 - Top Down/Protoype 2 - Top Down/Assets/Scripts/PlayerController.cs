@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     public float hInput;
     public float vInput;
 
-public float xRange = 5.76f;
-public float yRange = 4.98f;
+public float xRange = 5.64f;
+public float yRange = 4.49f;
 
-
+public GameObject projectile;
+public Vector3 offset = new Vector3(0,1,0);
     //public float health;
     // Start is called before the first frame update
    
@@ -28,7 +29,7 @@ public float yRange = 4.98f;
      // Create a wall on the -x side
      if(transform.position.x < -xRange)
      {
-         transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+         transform.position = new Vector3( -xRange, transform.position.y, transform.position.z);
       }
       // Create a wall on x side
       if(transform.position.x > xRange)
@@ -38,12 +39,20 @@ public float yRange = 4.98f;
       // Create a wall on the -y side
     if(transform.position.y < -yRange)
      {
-         transform.position = new Vector3(-yRange, transform.position.x, transform.position.z);
+         transform.position = new Vector3( transform.position.x, -yRange, transform.position.z);
       }
       // Create a wall on y side
      if(transform.position.y > yRange)
      {
-         transform.position = new Vector3( yRange, transform.position.x, transform.position.z);
+         transform.position = new Vector3( transform.position.x, yRange, transform.position.z);
       }
+
+    if(Input.GetKeyDown(KeyCode.Space))
+     { 
+         Instantiate(projectile, transform.position + offset, projectile.transform.rotation);
+     }
+
+     
+
     }
 }
