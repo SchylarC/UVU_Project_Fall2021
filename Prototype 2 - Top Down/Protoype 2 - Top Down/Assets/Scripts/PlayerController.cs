@@ -50,10 +50,11 @@ public Vector3 offset = new Vector3(0,1,0);
 
     if(Input.GetKeyDown(KeyCode.Space))
      { 
-         Instantiate(projectile, launcher.transform.position, projectile.transform.rotation);
+         Instantiate(projectile, launcher.transform.position, launcher.transform.rotation);
      }
 
      
-
     }
+
+
 }
