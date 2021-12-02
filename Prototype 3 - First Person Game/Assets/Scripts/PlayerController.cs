@@ -40,15 +40,12 @@ public class PlayerController : MonoBehaviour
             if(weapon.CanShoot())
                 weapon.Shoot();
         }
-     
-    }
-
-    void FixedUpdate()
-    {
-           if(Input.GetButtonDown("Jump"))
+        // Jump Button
+         if(Input.GetButtonDown("Jump"))
             Jump();
     }
 
+    
      void Move()
     {
         float x = Input.GetAxis("Horizontal") * moveSpeed;

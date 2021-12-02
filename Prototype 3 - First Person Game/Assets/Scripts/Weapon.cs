@@ -40,7 +40,6 @@ public class Weapon : MonoBehaviour
        
     }
 
-
     public void Shoot()
     {
         // Cooldown
@@ -48,7 +47,7 @@ public class Weapon : MonoBehaviour
         curAmmo--;
         // Creating an instance of the bullet prefab at muzzle position and rotation
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
-        // add velocity to projectile
+        // Add velocity to projectile
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
     }
 
