@@ -15,9 +15,10 @@ public float yRange = 6.27f;
 public GameObject projectile;
 public Transform launcher;
 public Vector3 offset = new Vector3(0,1,0);
-    //public float health;
+    // public float health
+
     // Start is called before the first frame update
-   
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +29,7 @@ public Vector3 offset = new Vector3(0,1,0);
       transform.Rotate(Vector3.back,  turnSpeed * hInput * Time.deltaTime); 
       transform.Translate(Vector3.up * speed * vInput * Time.deltaTime); 
      // Create a wall on the -x side
+     
      if(transform.position.x < -xRange)
      {
          transform.position = new Vector3( -xRange, transform.position.y, transform.position.z);
@@ -53,8 +55,5 @@ public Vector3 offset = new Vector3(0,1,0);
          Instantiate(projectile, launcher.transform.position, launcher.transform.rotation);
      }
 
-     
     }
-
-
 }
