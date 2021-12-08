@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float moveSpeed;             // movement speed in units per second
-    public float jumpForce;             // force applied upwards
+[Header("Stats")]
+    public float moveSpeed;             // Movement speed in units per second
+    public float jumpForce;             // Force applied upwards
 
-    public float lookSensitivity;               // mouse look sensitivity
-    public float maxLookX;              // lowest down we can look
-    public float minLookX;               // highest up we can look 
-    private float rotX;             // current x rotation of the camera 
+    public int curHp;
+    public int maxHp;
+
+    [Header("Mouse Look")]
+    public float lookSensitivity;       // Mouse look sensitivity
+    public float maxLookX;              // Lowest down we can look
+    public float minLookX;              // Highest up we can look 
+    private float rotX;                 // Current x rotation of the camera 
 
     private Camera camera;
     private Rigidbody rb;
@@ -28,25 +33,21 @@ public class PlayerController : MonoBehaviour
         camera = Camera.main;
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    void Update()
+    // Applies damage to the player
+      public void TakeDamage(int damage)
     {
-        Move();
-        CamLook();
-        // Fire Button
-        if(Input.GetButton("Fire1"))
-        {
-            if(weapon.CanShoot())
-                weapon.Shoot();
-        }
-        // Jump Button
-         if(Input.GetButtonDown("Jump"))
-            Jump();
-    }
+        curHp -= damage;
 
-    
-     void Move()
+        if(curHp<= 0)
+            Die();
+    }
+    // If player's health is zero or below the run Die()
+    void Die()
+    {
+        
+    }    
+
+       void Move()
     {
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
@@ -79,5 +80,20 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);  
         }           
    
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        Move();
+        CamLook();
+        // Fire Button
+        if(Input.GetButton("Fire1"))
+        {
+            if(weapon.CanShoot())
+                weapon.Shoot();
+        }
+        // Jump Button
+         if(Input.GetButtonDown("Jump"))
+            Jump();
     }
 }

@@ -49,6 +49,19 @@ public class EnemyAI : MonoBehaviour
             path.RemoveAt(0);
     }
 
+    public void TakeDamage(int damage)
+    {
+        curHp -= damage;
+
+        if(curHp<= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }    
+
     void Update()
     {
         // Look at the target
