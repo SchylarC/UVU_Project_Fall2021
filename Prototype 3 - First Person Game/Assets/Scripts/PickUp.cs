@@ -58,7 +58,7 @@ public class PickUp : MonoBehaviour
         Vector3 offset = (bobbingUp == true ? new Vector3(0, bobHeight / 2, 0) : new Vector3(0, -bobHeight / 2, 0));
 
         transform.position = Vector3.MoveTowards(transform.position, startPos + offset,  bobSpeed * Time.deltaTime);
-        // Set bobbing up to false
+    
         if(transform.position == startPos + offset)
             bobbingUp = !bobbingUp;
     }

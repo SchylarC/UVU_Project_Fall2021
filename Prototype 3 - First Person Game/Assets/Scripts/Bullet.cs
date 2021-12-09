@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float lifetime;
     private float shootTime;
 
+    public GameObject hitParticle;
+
     void OnEnable()
     {
         shootTime = Time.time;
@@ -15,14 +17,21 @@ public class Bullet : MonoBehaviour
 
     void OntriggerEnter(Collider other)
     {
+        // Create the hit particle
+        GameObject obj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+        Destroy(obj, 1.0f);
+        
         // If hit deal out damage to the player
         if(other.CompareTag("Player"))
             other.GetComponent<PlayerController>().TakeDamage(damage);
+
         // If hit deal out damage to the enemy
         else if(other.CompareTag("Enemy"))
             other.GetComponent<EnemyAI>().TakeDamage(damage);
+            
         // Disable Projectile for future use 
         gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
