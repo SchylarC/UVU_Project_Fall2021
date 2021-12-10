@@ -108,3 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c288a0109be0d1148854d2041aa225d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  value: 0
+  rotationSpeed: 0
+  bobSpeed: 0
+  bobHeight: 0
+  pickupSFX: {fileID: 8300000, guid: d75e466eef626c44480367a26c0c5422, type: 3}
