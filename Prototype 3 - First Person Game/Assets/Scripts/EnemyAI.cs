@@ -7,7 +7,7 @@ using System.Linq;
 public class EnemyAI : MonoBehaviour
 {
     // Enemy Stats
-    public int curHp, maxHp, ScoreToGive;
+    public int curHp, maxHp, scoreToGive;
     // Movement
     public float moveSpeed, attackRange, yPathOffset;
     // Coordinates for a path
@@ -53,12 +53,13 @@ public class EnemyAI : MonoBehaviour
     {
         curHp -= damage;
 
-        if(curHp<= 0)
+        if(curHp <= 0)
             Die();
     }
 
     void Die()
     {
+        GameManager.instance.AddScore(scoreToGive);
         Destroy(gameObject);
     }    
 
