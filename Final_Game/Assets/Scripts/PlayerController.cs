@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 offset = new Vector3(0,1,0);
 
     private Vector3 temp = new Vector3();
-    public GameObject hitParticle;
+    
 
 
     
@@ -114,11 +114,5 @@ public class PlayerController : MonoBehaviour
             Die();
         
     }
-     void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"))
-            other.GetComponent<PlayerController>().TakeDamage(damage);
-       GameObject obj = Instantiate(hitParticle, transform.position, Quaternion.identity);
-            
-    }
+  
 }
