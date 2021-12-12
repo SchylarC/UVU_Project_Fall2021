@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
     public float turnSpeed = 50.0f;
+    public int curHp;
+    public int maxHp;
+    public int CurScore;
+    public int MaxScore;
     public float hInput;
     public float vInput;
 
@@ -43,5 +47,31 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
         }
+
+        // Pause the game when the pause menu is pressed
+        if(GameManager.instance.gamePaused == true)
+            return;
+
+    }
+    
+    public void GiveScore(int amountToGive)
+    {
+        CurScore = Mathf.Clamp(CurScore + amountToGive, 0, MaxScore);
+    }
+
+    // Run when players health is zero
+    void Die()
+    {
+        GameManager.instance.LoseGame();
+    }
+
+
+
+    // Applies damage to the player
+    public void TakeDamage(int damage)
+    {
+       curHp -= damage;
+        if(curHp <= 0)
+            Die();
     }
 }
