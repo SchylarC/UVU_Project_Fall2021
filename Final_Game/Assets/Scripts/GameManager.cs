@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int scoreToWin;
-    public int curScore;
-    public bool gamePaused;
-    public bool isDoorLocked;
+    public static int CurScore;
+    public  bool gamePaused;
+    public static bool isDoorLocked;
     public static GameManager instance;
 
     void Awake()
@@ -36,28 +36,35 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         Time.timeScale = gamePaused == true ? 0.0f : 1.0f;
         GameUI.instance.TogglePauseMenu(gamePaused);
+        
     }
 
-    public void AddScore(int score)
+    public void ToggleEndGameMenu()
     {
-        curScore += score;
-        GameUI.instance.UpdateScoreText(curScore);
-        // Does the player have enough points to win
-        if(curScore >= scoreToWin)
-            WinGame();
+        gamePaused = !gamePaused;
+        Time.timeScale = gamePaused == true ? 0.0f : 1.0f;
+        GameUI.instance.SetEndGameScreen(true, 15);
+        
     }
 
-     void WinGame()
+    public static void AddScore(int score)
+    {
+        CurScore += score;
+        GameUI.instance.UpdateScoreText(CurScore);
+    }
+
+    public void WinGame()
     {
         // Show the win screen and score
-        GameUI.instance.SetEndGameScreen(true, curScore);
-        
+        GameUI.instance.SetEndGameScreen(true, CurScore);
+        Time.timeScale = 0.0f;
+        gamePaused = true;
     }
 
     public void LoseGame()
     {
         // Load the Lose Screen and score
-        GameUI.instance.SetEndGameScreen(false, curScore);
+        GameUI.instance.SetEndGameScreen(false, CurScore);
         Time.timeScale = 0.0f;
         gamePaused = true;
     }

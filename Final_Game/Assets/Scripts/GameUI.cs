@@ -40,7 +40,6 @@ public class GameUI : MonoBehaviour
         endGameScreen.SetActive(true);
         endGameHeaderText.text = won == true ? "You Win" : "You Lose";
         endGameHeaderText.color = won == true ? Color.green : Color.red;
-        endGameScoreText.text = "<b>Score<b>\n" + score;
     }
     public void OnResumeButton()
     {

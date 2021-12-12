@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     public int damage;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

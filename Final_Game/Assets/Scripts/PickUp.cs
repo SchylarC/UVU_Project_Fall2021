@@ -21,10 +21,11 @@ public class PickUp : MonoBehaviour
             switch(type)
             {
                 case PickupType.Score :
-                player.GiveScore(value);
+                GameManager.CurScore +=1;
+                
+                GameUI.instance.UpdateScoreText(GameManager.CurScore);
                 break;
             }
-            
             // Destroy Pick up 
             Destroy(gameObject);
         }
